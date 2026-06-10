@@ -1,4 +1,4 @@
-# Credit Risk Analysis with Python and SQL
+# Credit Risk Analysis with Python
 
 ## Objective
 
@@ -21,14 +21,17 @@ The dataset contains 1,000 borrower-level observations, 20 predictor variables, 
 
 The project includes:
 
-- Data loading and initial inspection
-- Missing-value analysis
-- Target distribution analysis
-- Numerical feature exploration
-- Bad credit rate analysis across categorical variables
-- Baseline logistic regression
-- Class-weighted logistic regression
-- Model comparison using accuracy, ROC-AUC, classification reports, and confusion matrices
+* Data loading and initial inspection
+* Missing-value analysis
+* Target distribution analysis
+* Numerical feature exploration
+* Bad credit rate analysis across categorical variables
+* Baseline logistic regression
+* Class-weighted logistic regression
+* Model comparison using accuracy, ROC-AUC, precision, recall, F1-score and confusion matrices
+* 5-fold stratified cross-validation
+* Threshold tuning for the classification decision rule
+* Coefficient-based interpretation of the logistic regression model
 
 ## Main Findings
 
@@ -40,23 +43,30 @@ The baseline logistic regression model achieves an accuracy of 0.78 and a ROC-AU
 
 The class-weighted logistic regression model achieves an accuracy of 0.75 and a ROC-AUC of approximately 0.806, while improving recall for the bad credit risk class to 0.80.
 
-## Interpretation
+Cross-validation supports the same qualitative tradeoff: the baseline model has stronger overall accuracy, while the class-weighted model improves detection of bad credit risk borrowers.
+
+Threshold tuning shows that the default 0.5 classification threshold is not necessarily optimal in a credit risk setting. Lowering the threshold can improve recall for bad credit risk borrowers, at the cost of more false positives.
+
+## Business Interpretation
 
 The balanced model is better at detecting bad credit risk borrowers, while the baseline model has slightly higher overall accuracy. This illustrates a common credit risk tradeoff: maximizing accuracy may not be sufficient when the minority class is the class of greatest business interest.
 
+In a credit risk context, false negatives and false positives have different business costs. A false negative may expose the lender to credit losses, while a false positive may reject or flag a potentially profitable borrower. For this reason, recall, precision, threshold selection and confusion matrices are more informative than accuracy alone.
+
+## Limitations
+
+* The dataset is relatively small, with 1,000 observations.
+* The analysis is observational and does not establish causality.
+* The model is intended as an interpretable baseline, not a production credit scoring system.
+* A real credit risk system would require calibration, cost-sensitive evaluation, external validation and fairness analysis.
+
 ## Next Steps
 
-- Add SQL-based segmentation analysis
-- Add model calibration
-- Compare with tree-based models
-- Add cost-sensitive evaluation
-- Refactor notebook code into reusable Python scripts
+Future work could include:
 
-## Model Results
-
-| Model | Accuracy | ROC-AUC | Recall for Bad Credit |
-|---|---:|---:|---:|
-| Baseline Logistic Regression | 0.78 | 0.804 | 0.53 |
-| Class-Weighted Logistic Regression | 0.75 | 0.806 | 0.80 |
-
-The class-weighted model sacrifices some overall accuracy but substantially improves recall for the bad credit class. In credit risk settings, this tradeoff can be preferable when missing high-risk borrowers is more costly than incorrectly flagging low-risk borrowers.
+* SQL-based segmentation analysis
+* Model calibration
+* Tree-based models
+* Cost-sensitive evaluation
+* Fairness and bias analysis
+* Conversion of the notebook workflow into reusable Python scripts
