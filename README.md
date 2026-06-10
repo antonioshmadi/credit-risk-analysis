@@ -46,14 +46,11 @@ The balanced model is better at detecting bad credit risk borrowers, while the b
 
 ## Next Steps
 
-Future work could include:
-
-- Cross-validation
-- Threshold tuning
-- Model calibration
-- Tree-based models
-- Feature importance analysis
-- SQL-based segmentation analysis
+- Add SQL-based segmentation analysis
+- Add model calibration
+- Compare with tree-based models
+- Add cost-sensitive evaluation
+- Refactor notebook code into reusable Python scripts
 
 ## Model Results
 
