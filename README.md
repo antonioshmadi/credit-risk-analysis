@@ -54,3 +54,12 @@ Future work could include:
 - Tree-based models
 - Feature importance analysis
 - SQL-based segmentation analysis
+
+## Model Results
+
+| Model | Accuracy | ROC-AUC | Recall for Bad Credit |
+|---|---:|---:|---:|
+| Baseline Logistic Regression | 0.78 | 0.804 | 0.53 |
+| Class-Weighted Logistic Regression | 0.75 | 0.806 | 0.80 |
+
+The class-weighted model sacrifices some overall accuracy but substantially improves recall for the bad credit class. In credit risk settings, this tradeoff can be preferable when missing high-risk borrowers is more costly than incorrectly flagging low-risk borrowers.
